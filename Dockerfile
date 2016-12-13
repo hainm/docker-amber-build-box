@@ -25,3 +25,6 @@ ENV PATH=$PATH:/usr/lib/openmpi/1.4-gcc/bin
 ADD scripts/install_netcdf.sh /root/
 RUN cd /root && sh install_netcdf.sh
 RUN rm /root/install_netcdf.sh
+
+# lapack, blas
+RUN yum install -y lapack-devel blas-devel
