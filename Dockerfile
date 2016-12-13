@@ -9,7 +9,10 @@ RUN yum install -y \
             bzip2-devel \
             libXt-devel \
             libXext-devel \
-            libXdmcp-devel
+            libXdmcp-devel \
+            lapack-devel \
+            blas-devel \
+            arpack-devel
 
 # miniconda3
 ADD scripts/install_miniconda.sh /root/
@@ -17,14 +20,7 @@ RUN cd /root/ && sh install_miniconda.sh
 ENV PATH=/root/miniconda3/bin:$PATH
 RUN rm /root/install_miniconda.sh
 
-# openmpi
-RUN yum install -y openmpi-devel
-ENV PATH=$PATH:/usr/lib/openmpi/1.4-gcc/bin
-
 # netcdf
 ADD scripts/install_netcdf.sh /root/
 RUN cd /root && sh install_netcdf.sh
 RUN rm /root/install_netcdf.sh
-
-# lapack, blas
-RUN yum install -y lapack-devel blas-devel
